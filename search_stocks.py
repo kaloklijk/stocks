@@ -15,13 +15,10 @@ with open("symbol.txt", "r") as f:
         st.write(f"""
         # {ticker}
         """)
-        try:
-            startdate[ticker] = st.date_input("start")
-            enddate[ticker] = st.date_input("end")
-        except Exception:
-            pass
-        ticker_price = yf.Ticker(ticker).history(period="1d", start=startdate, end=enddate).Close
-        ticker_analysis = yf.download(ticker, start=startdate, end=enddate)
+        startdate[ticker] = st.date_input(f"{ticker} start")
+        enddate[ticker] = st.date_input(f"{ticker} end")
+        ticker_price = yf.Ticker(ticker).history(period="1d", start=startdate[ticker], end=enddate[ticker]).Close
+        ticker_analysis = yf.download(ticker, start=startdate[ticker], end=enddate[ticker])
 
         st.write(f"""
         ## Recent Close Price: {ticker_price[-1]}
