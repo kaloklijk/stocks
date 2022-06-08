@@ -17,8 +17,8 @@ with open("symbol.txt", "r") as f:
         st.write(f"""
         # {ticker}
         """)
-        startdate[ticker] = st.date_input(f"{ticker} start", DateValue='2022-6-7')
-        enddate[ticker] = st.date_input(f"{ticker} end", DateValue='2022-6-8')
+        startdate[ticker] = st.date_input(f"{ticker} start", value='2022-6-7')
+        enddate[ticker] = st.date_input(f"{ticker} end", value='2022-6-8')
         ticker_price = yf.Ticker(ticker).history(period="1d", start=startdate[ticker], end=enddate[ticker]).Close
         ticker_analysis = yf.download(ticker, start=startdate[ticker], end=enddate[ticker])
 
