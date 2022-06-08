@@ -3,6 +3,8 @@ import streamlit as st
 import yfinance as yf
 import pandas as pd
 from collections import defaultdict
+with open('style.css', "r") as stylesheet:
+    st.markdown(f'<style>{stylesheet.read()}</style>', unsafe_allow_html=True)
 st.write("""
 # stocks
 """)
