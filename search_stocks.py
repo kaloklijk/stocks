@@ -3,6 +3,7 @@ import streamlit as st
 import yfinance as yf
 import pandas as pd
 from collections import defaultdict
+import datetime
 with open('style.css', "r") as stylesheet:
     st.markdown(f'<style>{stylesheet.read()}</style>', unsafe_allow_html=True)
 st.write("""
@@ -17,8 +18,8 @@ with open("symbol.txt", "r") as f:
         st.write(f"""
         # {ticker}
         """)
-        startdate[ticker] = st.date_input(f"{ticker} start", value='2022-6-7')
-        enddate[ticker] = st.date_input(f"{ticker} end", value='2022-6-8')
+        startdate[ticker] = st.date_input(f"{ticker} start", value=datetime.date(2022, 6, 7))
+        enddate[ticker] = st.date_input(f"{ticker} end", value=datetime.date(2022, 6, 8))
         ticker_price = yf.Ticker(ticker).history(period="1d", start=startdate[ticker], end=enddate[ticker]).Close
         ticker_analysis = yf.download(ticker, start=startdate[ticker], end=enddate[ticker])
 
