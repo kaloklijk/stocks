@@ -2,9 +2,6 @@ yfinance
 pandas
 numpy
 matplotlib
-<<<<<<< HEAD
 streamlit
-=======
 seaborn
-streamlit
->>>>>>> 5f0620febc67a6c2ca1b900102d2376cbc1469ba
+
