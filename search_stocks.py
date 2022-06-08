@@ -23,7 +23,7 @@ with open("symbol.txt", "r") as f:
         """)
         st.line_chart(ticker_price)
         st.write(f"""
-        ## stocks analysis: 
+        ## stocks prices info: 
         
         """)
         st.table(ticker_analysis)
