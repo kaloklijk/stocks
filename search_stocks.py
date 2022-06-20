@@ -15,22 +15,24 @@ with open("symbol.txt", "r") as f:
     startdate = defaultdict()
     enddate = defaultdict()
     for ticker in selects:
-        st.write(f"""
+        try:
+            st.write(f"""
         # {ticker}
         """)
-        startdate[ticker] = st.date_input(f"{ticker} start")
-        enddate[ticker] = st.date_input(f"{ticker} end")
-        ticker_price = yf.Ticker(ticker).history(period="1d", start=startdate[ticker], end=enddate[ticker]).Close
-        ticker_analysis = yf.download(ticker, start=startdate[ticker], end=enddate[ticker])
+            startdate[ticker] = st.date_input(f"{ticker} start")
+            enddate[ticker] = st.date_input(f"{ticker} end")
+            ticker_price = yf.Ticker(ticker).history(period="1d", start=startdate[ticker], end=enddate[ticker]).Close
+            ticker_analysis = yf.download(ticker, start=startdate[ticker], end=enddate[ticker])
 
-        st.write(f"""
+            st.write(f"""
         ## Recent Close Price: {ticker_price[-1]}
 
         """)
-        st.line_chart(ticker_price)
-        st.write(f"""
+            st.line_chart(ticker_price)
+            st.write(f"""
         ## stocks prices info: 
         
         """)
-        st.table(ticker_analysis)
-  
+            st.table(ticker_analysis)
+        except IndexError:
+            pass
